@@ -2,10 +2,6 @@ FROM 372768226/iiwoai:7.0-fpm-alpine-custom-ext-v1
 
 MAINTAINER iiwoai  (https://github.com/docker-library/php/blob/b250a22ce67cd1232c11e0c17a0f1708ced6f4af/7.0/alpine3.7/fpm/Dockerfile)
 
-## 设置国内源加速
-RUN echo $'https://mirrors.aliyun.com/alpine/latest-stable/main\n\
-https://mirrors.aliyun.com/alpine/latest-stable/community\n'\
-> /etc/apk/repositories
 
 ## timezone
 RUN apk update \
