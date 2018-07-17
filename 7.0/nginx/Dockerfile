@@ -1,4 +1,4 @@
-FROM 372768226/iiwoai:7.0-fpm-alpine-custom-ext-v2
+FROM 372768226/php:7.0-fpm-alpine-custom-ext-v2
 
 MAINTAINER iiwoai
 
