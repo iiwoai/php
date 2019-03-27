@@ -33,6 +33,8 @@ RUN apt-get update && apt-get install -y \
 		$PHPIZE_DEPS \
 		ca-certificates \
                 nscd \ 
+                procps \
+                telnet \
 		curl \
 		xz-utils \
 	--no-install-recommends && rm -r /var/lib/apt/lists/*
@@ -145,6 +147,16 @@ RUN set -eux; \
 		--enable-ftp \
 # --enable-mbstring is included here because otherwise there's no way to get pecl to use it properly (see https://github.com/docker-library/php/issues/195)
 		--enable-mbstring \
+                --enable-shmop \
+                --enable-sockets \
+                --enable-sysvmsg \
+                --enable-sysvsem \
+                --enable-sysvshm  \
+                --enable-wddx \
+                --enable-exif \
+                --enable-pcntl \ 
+                --enable-bcmath \
+                --enable-calendar \
 # --enable-mysqlnd is included here because it's harder to compile after the fact than extensions are (since it's a plugin for several extensions, not an extension in itself)
 		--enable-mysqlnd \
 		\
@@ -227,6 +239,8 @@ RUN set -ex \
 		echo '[www]'; \
 		echo 'listen = 9000'; \
 	} | tee php-fpm.d/zz-docker.conf
+
+COPY nscd.conf /etc/nscd.conf
 
 EXPOSE 9000
 CMD ["php-fpm"]
